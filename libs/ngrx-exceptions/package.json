@@ -1,5 +1,5 @@
 {
-  "name": "ngrx-exceptions",
+  "name": "@ninthdegree/ngrx-exceptions",
   "version": "0.0.3-snapshot",
   "peerDependencies": {
     "@angular/common": "^7.2.0",

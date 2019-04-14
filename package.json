@@ -1,5 +1,5 @@
 {
-  "name": "ngrx-exceptions",
+  "name": "@ninthdegree/platform",
   "version": "0.0.3-snapshot",
   "license": "GPL-3.0-or-later",
   "scripts": {
@@ -26,6 +26,9 @@
     "dep-graph": "./node_modules/.bin/nx dep-graph",
     "help": "./node_modules/.bin/nx help"
   },
+  "subPackages": [
+    "libs/ngrx-exceptions"
+  ],
   "private": false,
   "dependencies": {
     "@angular/animations": "^7.2.13",
@@ -72,7 +75,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/cmoulard/ngrx-exceptions.git"
+    "url": "git@github.com:cedricmoulard/ninthdegree-platform.git"
   },
-  "homepage": "https://cmoulard.github.io/ngrx-exceptions/"
+  "homepage": "https://cmoulard.github.io/ninthdegree-platform/"
 }
