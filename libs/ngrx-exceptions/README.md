@@ -1,25 +1,64 @@
-# NgrxExceptions
+# Ninth Degree Platform - Ngrx Exceptions
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.0.
+Provide exception management with NGRX
 
-## Code scaffolding
+## Quickstart
 
-Run `ng generate component component-name --project ngrx-exceptions` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project ngrx-exceptions`.
+* Install the package
 
-> Note: Don't forget to add `--project ngrx-exceptions` or else it will be added to the default project in your `angular.json` file.
+`npm i @ninthdegree/ngrx-exceptions`
 
-## Build
+* Import module
+```
+import {NgrxExceptionsModule} from '@ninthdegree/ngrx-exceptions';
 
-Run `ng build ngrx-exceptions` to build the project. The build artifacts will be stored in the `dist/` directory.
+@NgModule({
+  imports: [
+    ...
+    NgrxExceptionsModule
+    ]
+})
+export class AppModule {}
 
-## Publishing
+```
 
-After building your library with `ng build ngrx-exceptions`, go to the dist folder `cd dist/ngrx-exceptions` and run `npm publish`.
+* Create your own exceptions
+```
+import {TechnicalException, FunctionalException} from '@ninthdegree/ngrx-exceptions';
 
-## Running unit tests
+/**
+* My technical exception
+**/
+export class MyTechnicalException extends TechnicalException {
 
-Run `ng test ngrx-exceptions` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  constructor(message: string, cause?: any){
+    super('MyTechnicalException', message, cause);
+  }
 
-## Further help
+}
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+/**
+* My functional exception
+**/
+export class MyFunctionalException extends FunctionalException {
+
+  constructor(message: string, cause?: any){
+    super('MyFunctionalException', message, cause);
+  }
+
+}
+```
+
+* Throw exception
+```
+
+import {ExceptionActions} from '@ninthdegree/ngrx-exceptions';
+...
+
+this.store.dispatch(ExceptionActions.throwException(new MyTechnicalException('Unexpected technical exception'));
+this.store.dispatch(ExceptionActions.throwException(new MyFunctionalException('Known functional exception'));
+
+```
+
+## Documentation and examples
+[Full documentation](https://cedricmoulard.github.io/ninthdegree-platform/)
