@@ -1,1 +1,9 @@
 theme: jekyll-theme-cayman
+title: Ninth Degree Platform
+
+show_downloads: true
+
+github:
+  zip_url: https://github.com/cedricmoulard/ninthdegree-platform/archive/master.zip
+  repository_name: Ninth Degree Platform
+  owner_name: Cédric Moulard
