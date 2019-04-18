@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import * as ExceptionActions from './exceptions.actions';
 import {map} from 'rxjs/operators';
-import {ThrowableException} from "../exceptions/throwable.exception";
+import {Throwable} from "../interfaces/throwable.interface";
 
 @Injectable()
 export class ExceptionsEffects {
@@ -10,12 +10,9 @@ export class ExceptionsEffects {
   @Effect() raiseException$ = this.actions$
     .pipe(
       ofType(ExceptionActions.throwException.type),
-      map((action: { exception: ThrowableException }) => {
+      map((action: { exception: Throwable }) => {
 
           const {exception} = action;
-
-          console.log(`Exception Raised : ${exception}`);
-          // LoggerService.flush();
           return ExceptionActions.exceptionThrown({exception});
         }
       )

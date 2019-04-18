@@ -1,10 +1,10 @@
 import {ExceptionsAction, ExceptionsActionTypes} from './exceptions.actions';
-import {ThrowableException} from "../exceptions/throwable.exception";
+import {Throwable} from "../interfaces/throwable.interface";
 
 export const EXCEPTION_FEATURE_KEY = 'exceptions';
 
 export interface ExceptionState {
-  list: ThrowableException[];
+  list: Throwable[];
 }
 
 export interface ExceptionPartialState {
@@ -15,18 +15,20 @@ export const initialExceptionState: ExceptionState = {
   list: [],
 };
 
-export function exceptionReducer(
+export function exceptionsReducer(
   state: ExceptionState = initialExceptionState,
   action: ExceptionsAction
 ): ExceptionState {
   switch (action.type) {
+
     case ExceptionsActionTypes.ExceptionThrown: {
-      state = {
+      return {
         ...state,
         list: [...state.list, action.exception]
       };
-      break;
     }
+
+    default:
+      return state;
   }
-  return state;
 }

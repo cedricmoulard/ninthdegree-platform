@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {EXCEPTION_FEATURE_KEY, ExceptionState} from './exceptionReducer';
+import {EXCEPTION_FEATURE_KEY, ExceptionState} from './exceptions.reducer';
 
 // Lookup the 'Exceptions' feature state managed by NgRx
 const getExceptionsState = createFeatureSelector<ExceptionState>(

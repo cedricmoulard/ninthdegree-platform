@@ -1,21 +1,17 @@
 import {exceptionsQuery} from './exceptions.selectors';
-import {ThrowableException} from "../exceptions/throwable.exception";
+import {createFunctionalException, createTechnicalException} from "../exceptions.constants";
 
 describe('Exceptions Selectors', () => {
 
   let storeState;
 
   beforeEach(() => {
-    const createExceptions = (code: string, message = ''): ThrowableException => new ThrowableException(
-      code,
-      name || `message-${code}`
-    );
+
     storeState = {
       exceptions: {
         list: [
-          createExceptions('PRODUCT-AAA'),
-          createExceptions('PRODUCT-BBB'),
-          createExceptions('PRODUCT-CCC')
+          createFunctionalException('BadArgumentException', 'Bad Argument'),
+          createTechnicalException('NotFoundException', 'Service not found', new Error('error'))
         ]
       }
     };
@@ -24,7 +20,7 @@ describe('Exceptions Selectors', () => {
   describe('Exceptions Selectors', () => {
     it('getAllExceptions() should return the list of Exceptions', () => {
       const results = exceptionsQuery.getAllExceptions(storeState);
-      expect(results.length).toBe(3);
+      expect(results.length).toBe(2);
     });
 
 

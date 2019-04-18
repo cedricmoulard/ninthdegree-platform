@@ -1,6 +1,7 @@
 {
   "name": "@ninthdegree/ngrx-exceptions",
   "version": "0.0.4-snapshot",
+  "license": "GPL-3.0-or-later",
   "peerDependencies": {
     "@angular/common": "^7.2.0",
     "@angular/core": "^7.2.0",

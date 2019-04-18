@@ -11,7 +11,7 @@ import {hot} from '@nrwl/nx/testing';
 
 import {ExceptionsEffects} from './exceptions.effects';
 import * as ExceptionActions from './exceptions.actions';
-import {ThrowableException} from "../exceptions/throwable.exception";
+import {Throwable} from "../interfaces/throwable.interface";
 
 describe('ExceptionsEffects', () => {
   let actions: Observable<any>;
@@ -37,9 +37,9 @@ describe('ExceptionsEffects', () => {
   describe('raiseException$', () => {
     it('should work', () => {
 
-    const exception = new ThrowableException('ApplicationException', 'Exception');
+      const exception = <Throwable>{code: 'ApplicationException', message: 'Exception'};
 
-      actions = hot('-a-|', {a: ExceptionActions.throwException( {exception})});
+      actions = hot('-a-|', {a: ExceptionActions.throwException({exception})});
 
       expect(effects.raiseException$).toBeObservable(
         hot('-a-|', {a: ExceptionActions.exceptionThrown({exception})})

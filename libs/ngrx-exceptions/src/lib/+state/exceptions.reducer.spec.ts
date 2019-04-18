@@ -1,23 +1,16 @@
 import * as ExceptionActions from './exceptions.actions';
-import {exceptionReducer, ExceptionState, initialExceptionState} from './exceptionReducer';
-import {ThrowableException} from "../exceptions/throwable.exception";
+import {exceptionsReducer, ExceptionState, initialExceptionState} from './exceptions.reducer';
+import {createFunctionalException} from "../exceptions.constants";
 
 describe('Exceptions Reducer', () => {
-  let createExceptions;
-
-  beforeEach(() => {
-    createExceptions = (id: string, name = ''): ThrowableException => new ThrowableException(
-      id,
-      name || `name-${id}`
-    );
-  });
 
   describe('valid Exceptions actions ', () => {
 
     it('should return set the list of known Exceptions', () => {
 
-      const action = ExceptionActions.exceptionThrown(createExceptions('PRODUCT-AAA'),);
-      const result: ExceptionState = exceptionReducer(initialExceptionState, action);
+      const exception = createFunctionalException('BadArgumentException', 'Bad arguments');
+      const action = ExceptionActions.exceptionThrown({exception});
+      const result: ExceptionState = exceptionsReducer(initialExceptionState, action);
 
       expect(result.list.length).toBe(1);
     });
@@ -26,7 +19,7 @@ describe('Exceptions Reducer', () => {
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
-      const result = exceptionReducer(initialExceptionState, action);
+      const result = exceptionsReducer(initialExceptionState, action);
 
       expect(result).toBe(initialExceptionState);
     });
