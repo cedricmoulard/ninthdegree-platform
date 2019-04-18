@@ -40,8 +40,8 @@ import { ExceptionActions, createFunctionalException, createTechnicalException }
 import { myTechnicalException, myFunctionalException } from './custom-exceptions.constant';
 ...
 
-this.store.dispatch(ExceptionActions.throwException(createFunctionalException(myTechnicalException, 'Unexpected technical exception'));
-this.store.dispatch(ExceptionActions.throwException(createTechnicalException(myFunctionalException, 'Known functional exception'));
+this.store.dispatch(ExceptionActions.throwException({exception: createFunctionalException(myTechnicalException, 'Unexpected technical exception')});
+this.store.dispatch(ExceptionActions.throwException({exception: createTechnicalException(myFunctionalException, 'Known functional exception')});
 
 ```
 

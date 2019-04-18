@@ -3,7 +3,7 @@ import {Throwable} from "../interfaces/throwable.interface";
 
 export enum ExceptionsActionTypes {
   ThrowException = '[Exception] Throw exception',
-  ExceptionThrown = '[Exception] Exceptions thrown'
+  ExceptionThrown = '[Exception] Exception thrown'
 }
 
 export const throwException = createAction(ExceptionsActionTypes.ThrowException,
