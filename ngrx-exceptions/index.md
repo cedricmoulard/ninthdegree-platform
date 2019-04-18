@@ -1,3 +1,11 @@
+---
+layout: default
+title: Ngrx Exceptions
+description: Ngrx Exceptions Module
+---
+
+[Home](../)
+
 # Ninth Degree Platform - Ngrx Exceptions
 
 Provide exception management with NGRX
@@ -62,4 +70,5 @@ this.store.dispatch(ExceptionActions.throwException(new MyTechnicalException('Un
 this.store.dispatch(ExceptionActions.throwException(new MyFunctionalException('Known functional exception'));
 
 ```
+
 
