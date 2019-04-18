@@ -9,7 +9,8 @@ Provide exception management with NGRX
 `npm i @ninthdegree/ngrx-exceptions`
 
 * Import module
-~~~~
+
+```typescript
 import {NgrxExceptionsModule} from '@ninthdegree/ngrx-exceptions';
 
 @NgModule({
@@ -20,10 +21,11 @@ import {NgrxExceptionsModule} from '@ninthdegree/ngrx-exceptions';
 })
 export class AppModule {}
 
-~~~~
+```
 
 * Create your own exceptions
-~~~~
+
+```typescript
 import {TechnicalException, FunctionalException} from '@ninthdegree/ngrx-exceptions';
 
 /**
@@ -47,10 +49,11 @@ export class MyFunctionalException extends FunctionalException {
   }
 
 }
-~~~~
+```
 
 * Throw exception
-~~~~
+
+```typescript
 
 import {ExceptionActions} from '@ninthdegree/ngrx-exceptions';
 ...
@@ -58,5 +61,5 @@ import {ExceptionActions} from '@ninthdegree/ngrx-exceptions';
 this.store.dispatch(ExceptionActions.throwException(new MyTechnicalException('Unexpected technical exception'));
 this.store.dispatch(ExceptionActions.throwException(new MyFunctionalException('Known functional exception'));
 
-~~~~
+```
 
