@@ -31,43 +31,25 @@ export class AppModule {}
 
 ```
 
-* Create your own exceptions
+* Create your own exceptions key
 
 ```typescript
-import {TechnicalException, FunctionalException} from '@ninthdegree/ngrx-exceptions';
 
-/**
-* My technical exception
-**/
-export class MyTechnicalException extends TechnicalException {
+export const myTechnicalException = 'MyTechnicalException';
+export const myFunctionalException = 'MyFunctionalException';
 
-  constructor(message: string, cause?: any){
-    super('MyTechnicalException', message, cause);
-  }
-
-}
-
-/**
-* My functional exception
-**/
-export class MyFunctionalException extends FunctionalException {
-
-  constructor(message: string, cause?: any){
-    super('MyFunctionalException', message, cause);
-  }
-
-}
 ```
 
 * Throw exception
 
 ```typescript
 
-import {ExceptionActions} from '@ninthdegree/ngrx-exceptions';
+import { ExceptionActions, createFunctionalException, createTechnicalException } from '@ninthdegree/ngrx-exceptions';
+import { myTechnicalException, myFunctionalException } from './custom-exceptions.constant';
 ...
 
-this.store.dispatch(ExceptionActions.throwException(new MyTechnicalException('Unexpected technical exception'));
-this.store.dispatch(ExceptionActions.throwException(new MyFunctionalException('Known functional exception'));
+this.store.dispatch(ExceptionActions.throwException({exception: createFunctionalException(myTechnicalException, 'Unexpected technical exception')});
+this.store.dispatch(ExceptionActions.throwException({exception: createTechnicalException(myFunctionalException, 'Known functional exception')});
 
 ```
 
