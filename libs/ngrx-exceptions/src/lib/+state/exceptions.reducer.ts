@@ -1,10 +1,11 @@
-import {ExceptionsAction, ExceptionsActionTypes} from './exceptions.actions';
-import {Throwable} from "../interfaces/throwable.interface";
+import {ExceptionsActionUnion, ExceptionsActionTypes} from './exceptions.actions';
+import {ThrowableException} from "../interfaces/throwable.interface";
+import { ExceptionsEventsUnion, ExceptionsEventTypes } from './exceptions.events';
 
 export const EXCEPTION_FEATURE_KEY = 'exceptions';
 
 export interface ExceptionState {
-  list: Throwable[];
+  list: ThrowableException[];
 }
 
 export interface ExceptionPartialState {
@@ -17,15 +18,19 @@ export const initialExceptionState: ExceptionState = {
 
 export function exceptionsReducer(
   state: ExceptionState = initialExceptionState,
-  action: ExceptionsAction
+  action: ExceptionsActionUnion | ExceptionsEventsUnion
 ): ExceptionState {
   switch (action.type) {
 
-    case ExceptionsActionTypes.ExceptionThrown: {
+    case ExceptionsEventTypes.ExceptionThrown: {
       return {
         ...state,
         list: [...state.list, action.exception]
       };
+    }
+
+    case ExceptionsEventTypes.ExceptionsCleared: {
+      return initialExceptionState;
     }
 
     default:

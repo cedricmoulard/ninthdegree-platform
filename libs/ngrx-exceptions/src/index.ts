@@ -1,5 +1,10 @@
-import * as ExceptionActions from './lib/+state/exceptions.actions'
+import * as ExceptionEvents from './lib/+state/exceptions.events';
+import { ExceptionState } from './lib/+state/exceptions.reducer';
 
-export * from './lib/exceptions.constants'
+export { throwFunctionalException, throwTechnicalException, clearExceptions } from './lib/exceptions.const';
 export * from './lib/ngrx-exceptions.module';
-export {ExceptionActions};
+export * from './lib/+state/exceptions.selectors';
+export * from './lib/interfaces/throwable.interface';
+
+
+export { ExceptionEvents, ExceptionState};

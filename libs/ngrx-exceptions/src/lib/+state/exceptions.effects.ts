@@ -1,25 +1,38 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
 import * as ExceptionActions from './exceptions.actions';
+import * as ExceptionEvents from './exceptions.events';
 import {map} from 'rxjs/operators';
-import {Throwable} from "../interfaces/throwable.interface";
+import {ThrowableException} from "../interfaces/throwable.interface";
+import {ExceptionsService} from "../exceptions.service";
 
 @Injectable()
 export class ExceptionsEffects {
 
-  @Effect() raiseException$ = this.actions$
+  @Effect() throwException$ = this.actions$
     .pipe(
       ofType(ExceptionActions.throwException.type),
-      map((action: { exception: Throwable }) => {
+      map((action: { exception: ThrowableException }) => {
 
           const {exception} = action;
-          return ExceptionActions.exceptionThrown({exception});
+          return ExceptionEvents.exceptionThrown({exception});
+        }
+      )
+    );
+
+  @Effect() clearExceptions$ = this.actions$
+    .pipe(
+      ofType(ExceptionActions.clearExceptions.type),
+      map((action) => {
+
+          return ExceptionEvents.exceptionsCleared();
         }
       )
     );
 
   constructor(
-    private actions$: Actions
+    private actions$: Actions,
+    private exceptionsService: ExceptionsService
   ) {
   }
 }

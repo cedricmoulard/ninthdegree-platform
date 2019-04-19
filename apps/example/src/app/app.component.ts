@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import {Store} from "@ngrx/store";
-import {createFunctionalException, ExceptionActions} from "@ne/ngrx-exceptions";
+import {Component} from '@angular/core';
+import {clearExceptions, throwFunctionalException, throwTechnicalException} from "@ne/ngrx-exceptions";
+import {myFunctionalException, myTechnicalException} from "./exceptions.const";
 
 @Component({
   selector: 'ninthdegree-root',
@@ -10,9 +10,18 @@ import {createFunctionalException, ExceptionActions} from "@ne/ngrx-exceptions";
 export class AppComponent {
   title = 'Ninth Degree Platform';
 
-  constructor(private readonly store:Store<any>){
+  constructor() {
+  }
 
-    this.store.dispatch(ExceptionActions.throwException({ exception:createFunctionalException('MonCode','A functional Exception')}));
+  throwFunctionalException(){
+    throwFunctionalException(myFunctionalException, 'A functional Exception');
+  }
 
+  throwTechnicalException(){
+    throwTechnicalException(myTechnicalException, 'A functional Exception', new Error());
+  }
+
+  clearExceptions(){
+    clearExceptions()
   }
 }

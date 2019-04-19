@@ -1,5 +1,5 @@
 import {exceptionsQuery} from './exceptions.selectors';
-import {createFunctionalException, createTechnicalException} from "../exceptions.constants";
+import {createFunctionalException, createTechnicalException} from "../exceptions.const";
 
 describe('Exceptions Selectors', () => {
 
@@ -11,7 +11,7 @@ describe('Exceptions Selectors', () => {
       exceptions: {
         list: [
           createFunctionalException('BadArgumentException', 'Bad Argument'),
-          createTechnicalException('NotFoundException', 'Service not found', new Error('error'))
+          createFunctionalException('NotFoundException', 'Service not found', new Error('error'))
         ]
       }
     };
@@ -29,6 +29,19 @@ describe('Exceptions Selectors', () => {
 
       expect(result).toBe(true);
     });
+
+    it("hasFunctionalException() should return true", () => {
+      const result = exceptionsQuery.hasFunctionalException(storeState);
+
+      expect(result).toBe(true);
+    });
+
+    it("hasTechnicalException() should return true", () => {
+      const result = exceptionsQuery.hasTechnicalException(storeState);
+
+      expect(result).toBe(false);
+    });
+
 
   });
 });

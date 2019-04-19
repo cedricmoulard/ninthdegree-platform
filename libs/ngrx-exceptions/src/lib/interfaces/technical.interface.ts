@@ -1,9 +1,9 @@
-import {ExceptionType, Throwable} from "./throwable.interface";
+import {ExceptionType, ThrowableException} from "./throwable.interface";
 
 /**
  * Technical Exception
  */
-export interface TechnicalException extends Throwable {
+export interface TechnicalException extends ThrowableException {
 
   readonly exceptionType: ExceptionType.TECHNICAL
 

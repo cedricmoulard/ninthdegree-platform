@@ -1,18 +1,30 @@
-import * as ExceptionActions from './exceptions.actions';
-import {exceptionsReducer, ExceptionState, initialExceptionState} from './exceptions.reducer';
-import {createFunctionalException} from "../exceptions.constants";
+import * as ExceptionEvents from './exceptions.events';
+import { exceptionsReducer, ExceptionState, initialExceptionState } from './exceptions.reducer';
+import { createFunctionalException } from '../exceptions.const';
 
 describe('Exceptions Reducer', () => {
 
   describe('valid Exceptions actions ', () => {
 
-    it('should return set the list of known Exceptions', () => {
+    it('should set the list of exceptions', () => {
 
       const exception = createFunctionalException('BadArgumentException', 'Bad arguments');
-      const action = ExceptionActions.exceptionThrown({exception});
+      const action = ExceptionEvents.exceptionThrown({ exception });
       const result: ExceptionState = exceptionsReducer(initialExceptionState, action);
 
       expect(result.list.length).toBe(1);
+    });
+
+    it('should clear the list of exceptions', () => {
+
+      const action = ExceptionEvents.exceptionsCleared();
+      const result: ExceptionState = exceptionsReducer({
+        list: [
+          createFunctionalException('BadArgumentException', 'Bad arguments')
+        ]
+      }, action);
+
+      expect(result.list.length).toBe(0);
     });
   });
 

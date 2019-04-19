@@ -11,7 +11,9 @@ import {hot} from '@nrwl/nx/testing';
 
 import {ExceptionsEffects} from './exceptions.effects';
 import * as ExceptionActions from './exceptions.actions';
-import {Throwable} from "../interfaces/throwable.interface";
+import * as ExceptionEvents from './exceptions.events';
+import {ThrowableException} from "../interfaces/throwable.interface";
+import { ExceptionsService } from '../exceptions.service';
 
 describe('ExceptionsEffects', () => {
   let actions: Observable<any>;
@@ -26,6 +28,7 @@ describe('ExceptionsEffects', () => {
       ],
       providers: [
         ExceptionsEffects,
+        ExceptionsService,
         DataPersistence,
         provideMockActions(() => actions)
       ]
@@ -34,15 +37,27 @@ describe('ExceptionsEffects', () => {
     effects = TestBed.get(ExceptionsEffects);
   });
 
-  describe('raiseException$', () => {
+  describe('throwException$', () => {
     it('should work', () => {
 
-      const exception = <Throwable>{code: 'ApplicationException', message: 'Exception'};
+      const exception = <ThrowableException>{code: 'ApplicationException', message: 'Exception'};
 
       actions = hot('-a-|', {a: ExceptionActions.throwException({exception})});
 
-      expect(effects.raiseException$).toBeObservable(
-        hot('-a-|', {a: ExceptionActions.exceptionThrown({exception})})
+      expect(effects.throwException$).toBeObservable(
+        hot('-a-|', {a: ExceptionEvents.exceptionThrown({exception})})
+      );
+    });
+  });
+
+  describe('clearExceptions$', () => {
+    it('should work', () => {
+
+
+      actions = hot('-a-|', {a: ExceptionActions.clearExceptions()});
+
+      expect(effects.clearExceptions$).toBeObservable(
+        hot('-a-|', {a: ExceptionEvents.exceptionsCleared()})
       );
     });
   });

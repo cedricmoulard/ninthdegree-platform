@@ -1,18 +1,17 @@
 import { createAction, props} from '@ngrx/store';
-import {Throwable} from "../interfaces/throwable.interface";
+import {ThrowableException} from "../interfaces/throwable.interface";
 
 export enum ExceptionsActionTypes {
   ThrowException = '[Exception] Throw exception',
-  ExceptionThrown = '[Exception] Exception thrown'
+  ClearExceptions = '[Exception] Clear exceptions',
 }
 
 export const throwException = createAction(ExceptionsActionTypes.ThrowException,
-  props<{ exception: Throwable }>()
+  props<{ exception: ThrowableException }>()
 );
 
-export const exceptionThrown = createAction(ExceptionsActionTypes.ExceptionThrown,
-  props<{ exception: Throwable }>()
-);
+export const clearExceptions = createAction(ExceptionsActionTypes.ClearExceptions);
 
-export type ExceptionsAction = ReturnType<typeof throwException | typeof exceptionThrown>;
+export type ExceptionsActionUnion = ReturnType<typeof throwException |
+  typeof clearExceptions>;
 

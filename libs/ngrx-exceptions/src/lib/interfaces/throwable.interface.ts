@@ -1,7 +1,7 @@
 /**
  * Represents all throwable exceptions
  */
-export interface Throwable {
+export interface ThrowableException {
 
   readonly exceptionType : ExceptionType;
   readonly code: string;
