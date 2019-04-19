@@ -13,6 +13,7 @@ describe('Exceptions Reducer', () => {
       const result: ExceptionState = exceptionsReducer(initialExceptionState, action);
 
       expect(result.list.length).toBe(1);
+      expect(result.lasException).toEqual(exception);
     });
 
     it('should clear the list of exceptions', () => {
@@ -25,6 +26,7 @@ describe('Exceptions Reducer', () => {
       }, action);
 
       expect(result.list.length).toBe(0);
+      expect(result.lasException).toBeUndefined();
     });
   });
 

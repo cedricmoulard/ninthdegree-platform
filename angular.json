@@ -131,6 +131,37 @@
           }
         }
       }
+    },
+    "exceptions-ui": {
+      "root": "libs/exceptions-ui",
+      "sourceRoot": "libs/exceptions-ui/src",
+      "projectType": "library",
+      "prefix": "ninthdegree",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/exceptions-ui/tsconfig.lib.json",
+              "libs/exceptions-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/builders:jest",
+          "options": {
+            "jestConfig": "libs/exceptions-ui/jest.config.js",
+            "tsConfig": "libs/exceptions-ui/tsconfig.spec.json",
+            "setupFile": "libs/exceptions-ui/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/schematics:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

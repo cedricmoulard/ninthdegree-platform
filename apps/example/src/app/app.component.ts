@@ -14,11 +14,11 @@ export class AppComponent {
   }
 
   throwFunctionalException(){
-    throwFunctionalException(myFunctionalException, 'A functional Exception');
+    throwFunctionalException(myFunctionalException, Math.random().toString(36).substring(7));
   }
 
   throwTechnicalException(){
-    throwTechnicalException(myTechnicalException, 'A functional Exception', new Error());
+    throwTechnicalException(myTechnicalException, Math.random().toString(36).substring(7), new Error());
   }
 
   clearExceptions(){

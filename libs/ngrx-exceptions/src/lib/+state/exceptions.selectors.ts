@@ -27,9 +27,15 @@ const getAllExceptions = createSelector(
   (state: ExceptionState) => state.list ? state.list : []
 );
 
+const getLastException = createSelector(
+  getExceptionsState,
+  (state: ExceptionState) => state.lasException
+);
+
 export const exceptionsQuery = {
   hasException,
   hasTechnicalException,
   hasFunctionalException,
-  getAllExceptions
+  getAllExceptions,
+  getLastException
 };

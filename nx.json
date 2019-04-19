@@ -13,6 +13,9 @@
     },
     "example": {
       "tags": []
+    },
+    "exceptions-ui": {
+      "tags": []
     }
   }
 }

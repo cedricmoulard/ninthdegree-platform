@@ -6,6 +6,7 @@ import {NgrxExceptionsModule} from "@ne/ngrx-exceptions";
 import {StoreModule} from "@ngrx/store";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import { ExceptionsUiModule } from '@ninthdegree/exceptions-ui';
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,7 +15,8 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
     StoreModule.forRoot({}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument(),
-    NgrxExceptionsModule],
+    NgrxExceptionsModule,
+    ExceptionsUiModule],
   providers: [],
   bootstrap: [AppComponent]
 })

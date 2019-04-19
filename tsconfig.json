@@ -16,7 +16,10 @@
     "baseUrl": ".",
     "paths": {
       "@ne/ngrx-exceptions": ["libs/ngrx-exceptions/src/index.ts"],
-      "core-js/es7/reflect": ["node_modules/core-js/proposals/reflect-metadata"],
+      "@ninthdegree/exceptions-ui": ["libs/exceptions-ui/src/index.ts"],
+      "core-js/es7/reflect": [
+        "node_modules/core-js/proposals/reflect-metadata"
+      ],
       "core-js/es6/*": ["node_modules/core-js/es/*"]
     }
   },

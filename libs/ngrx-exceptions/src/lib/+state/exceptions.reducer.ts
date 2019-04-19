@@ -6,6 +6,7 @@ export const EXCEPTION_FEATURE_KEY = 'exceptions';
 
 export interface ExceptionState {
   list: ThrowableException[];
+  lasException?: ThrowableException;
 }
 
 export interface ExceptionPartialState {
@@ -25,7 +26,8 @@ export function exceptionsReducer(
     case ExceptionsEventTypes.ExceptionThrown: {
       return {
         ...state,
-        list: [...state.list, action.exception]
+        list: [...state.list, action.exception],
+        lasException: action.exception
       };
     }
 
