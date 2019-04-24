@@ -15,7 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ne/ngrx-exceptions": ["libs/ngrx-exceptions/src/index.ts"]
+      "@ne/ngrx-exceptions": ["libs/ngrx-exceptions/src/index.ts"],
+      "@ninthdegree/exceptions-ui": ["libs/exceptions-ui/src/index.ts"],
+      "core-js/es7/reflect": [
+        "node_modules/core-js/proposals/reflect-metadata"
+      ],
+      "core-js/es6/*": ["node_modules/core-js/es/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

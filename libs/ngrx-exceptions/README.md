@@ -6,10 +6,13 @@ Provide exception management with NGRX
 
 * Install the package
 
-`npm i @ninthdegree/ngrx-exceptions`
+```
+npm i @ninthdegree/ngrx-exceptions
+```
 
 * Import module
-```
+
+```typescript
 import {NgrxExceptionsModule} from '@ninthdegree/ngrx-exceptions';
 
 @NgModule({
@@ -22,41 +25,24 @@ export class AppModule {}
 
 ```
 
-* Create your own exceptions
-```
-import {TechnicalException, FunctionalException} from '@ninthdegree/ngrx-exceptions';
+* Create your own exceptions key
 
-/**
-* My technical exception
-**/
-export class MyTechnicalException extends TechnicalException {
+```typescript
 
-  constructor(message: string, cause?: any){
-    super('MyTechnicalException', message, cause);
-  }
+export const myTechnicalException = 'MyTechnicalException';
+export const myFunctionalException = 'MyFunctionalException';
 
-}
-
-/**
-* My functional exception
-**/
-export class MyFunctionalException extends FunctionalException {
-
-  constructor(message: string, cause?: any){
-    super('MyFunctionalException', message, cause);
-  }
-
-}
 ```
 
 * Throw exception
-```
 
-import {ExceptionActions} from '@ninthdegree/ngrx-exceptions';
-...
+```typescript
 
-this.store.dispatch(ExceptionActions.throwException(new MyTechnicalException('Unexpected technical exception'));
-this.store.dispatch(ExceptionActions.throwException(new MyFunctionalException('Known functional exception'));
+import { myTechnicalException, myFunctionalException } from './custom-exceptions.constant';
+import {throwFunctionalException, throwTechnicalException} from "@ne/ngrx-exceptions";
+
+throwFunctionalException(myFunctionalException, 'A functional Exception');
+throwTechnicalException(myTechnicalException, 'A functional Exception', new Error());
 
 ```
 

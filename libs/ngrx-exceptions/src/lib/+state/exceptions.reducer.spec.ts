@@ -1,32 +1,39 @@
-import * as ExceptionActions from './exceptions.actions';
-import {exceptionReducer, ExceptionState, initialExceptionState} from './exceptionReducer';
-import {ThrowableException} from "../exceptions/throwable.exception";
+import * as ExceptionEvents from './exceptions.events';
+import { exceptionsReducer, ExceptionState, initialExceptionState } from './exceptions.reducer';
+import { createFunctionalException } from '../exceptions.const';
 
 describe('Exceptions Reducer', () => {
-  let createExceptions;
-
-  beforeEach(() => {
-    createExceptions = (id: string, name = ''): ThrowableException => new ThrowableException(
-      id,
-      name || `name-${id}`
-    );
-  });
 
   describe('valid Exceptions actions ', () => {
 
-    it('should return set the list of known Exceptions', () => {
+    it('should set the list of exceptions', () => {
 
-      const action = ExceptionActions.exceptionThrown(createExceptions('PRODUCT-AAA'),);
-      const result: ExceptionState = exceptionReducer(initialExceptionState, action);
+      const exception = createFunctionalException('BadArgumentException', 'Bad arguments');
+      const action = ExceptionEvents.exceptionThrown({ exception });
+      const result: ExceptionState = exceptionsReducer(initialExceptionState, action);
 
       expect(result.list.length).toBe(1);
+      expect(result.lasException).toEqual(exception);
+    });
+
+    it('should clear the list of exceptions', () => {
+
+      const action = ExceptionEvents.exceptionsCleared();
+      const result: ExceptionState = exceptionsReducer({
+        list: [
+          createFunctionalException('BadArgumentException', 'Bad arguments')
+        ]
+      }, action);
+
+      expect(result.list.length).toBe(0);
+      expect(result.lasException).toBeUndefined();
     });
   });
 
   describe('unknown action', () => {
     it('should return the initial state', () => {
       const action = {} as any;
-      const result = exceptionReducer(initialExceptionState, action);
+      const result = exceptionsReducer(initialExceptionState, action);
 
       expect(result).toBe(initialExceptionState);
     });

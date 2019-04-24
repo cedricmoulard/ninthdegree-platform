@@ -10,6 +10,12 @@
   "projects": {
     "ngrx-exceptions": {
       "tags": []
+    },
+    "example": {
+      "tags": []
+    },
+    "exceptions-ui": {
+      "tags": []
     }
   }
 }
