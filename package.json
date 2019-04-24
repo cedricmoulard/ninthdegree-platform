@@ -1,6 +1,6 @@
 {
   "name": "@ninthdegree/platform",
-  "version": "0.0.4-snapshot",
+  "version": "0.2.0-snapshot",
   "license": "GPL-3.0-or-later",
   "scripts": {
     "ng": "ng",
